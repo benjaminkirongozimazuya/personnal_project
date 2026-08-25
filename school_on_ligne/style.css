@@ -1,15 +1,38 @@
+/* =========================================
+   1. VARIABLES & CONFIGURATION GLOBALE (:root)
+   ========================================= */
+:root {
+    --bg-color: #f4f7f6;
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --text-muted: #666666;
+    --primary-color: #1a365d;
+    --primary-hover: #112240;
+    --accent-color: #ffcc00;
+    --accent-hover: #e6b800;
+    --border-color: #cccccc;
+}
+
 /* Styles généraux */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f7f6;
-    color: #333;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
-/* En-tête */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* =========================================
+   2. EN-TÊTE & NAVIGATION
+   ========================================= */
 header {
-    background-color: #1a365d;
+    background-color: var(--primary-color);
     color: white;
     display: flex;
     justify-content: space-between;
@@ -17,26 +40,86 @@ header {
     padding: 1rem 2rem;
 }
 
-header .logo {
+header .logo, .logo-text {
     font-size: 1.8rem;
     font-weight: bold;
-    color: #ffcc00;
+    color: var(--accent-color);
 }
 
-nav a {
+nav a, .nav-link {
     color: white;
     text-decoration: none;
     margin-left: 1.5rem;
     font-weight: 500;
+    transition: color 0.3s;
 }
 
-nav a:hover {
-    color: #ffcc00;
+nav a:hover, .nav-link:hover {
+    color: var(--accent-color);
 }
 
-/* Section Héro */
+/* =========================================
+   3. BOUTONS & CLASSES UTILITAIRES
+   ========================================= */
+.btn {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 0.75rem 1.75rem;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--accent-hover);
+}
+
+.btn.primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn.primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-small {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+}
+
+.btn-small:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+}
+
+.full-width {
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* =========================================
+   4. SECTION HÉRO (ACCUEIL)
+   ========================================= */
 .hero {
-    background: linear-gradient(rgba(26, 54, 93, 0.85), rgba(26, 54, 93, 0.85)), #1a365d;
+    background: linear-gradient(rgba(26, 54, 93, 0.85), rgba(26, 54, 93, 0.85)), var(--primary-color);
     color: white;
     text-align: center;
     padding: 5rem 2rem;
@@ -54,22 +137,9 @@ nav a:hover {
     line-height: 1.6;
 }
 
-.btn {
-    display: inline-block;
-    background-color: #ffcc00;
-    color: #1a365d;
-    padding: 0.75rem 1.75rem;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background 0.3s;
-}
-
-.btn:hover {
-    background-color: #e6b800;
-}
-
-/* Section des cartes / fonctionnalités */
+/* =========================================
+   5. CARTES & GRILLES DE FONCTIONNALITÉS
+   ========================================= */
 .features {
     display: flex;
     justify-content: center;
@@ -78,34 +148,33 @@ nav a:hover {
     flex-wrap: wrap;
 }
 
-.card {
-    background: white;
+.card, .manifesto-grid .card {
+    background: var(--card-bg);
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     width: 300px;
     text-align: left;
-    border-top: 4px solid #1a365d;
+    border-top: 4px solid var(--primary-color);
 }
 
 .card h3 {
-    color: #1a365d;
+    color: var(--primary-color);
     margin-top: 0;
 }
 
-/* Pied de page */
-footer {
-    background-color: #1a365d;
-    color: white;
-    text-align: center;
-    padding: 1.5rem;
-    margin-top: 3rem;
-    font-size: 0.9rem;
+.manifesto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
 }
 
-/* Style spécifique pour la page des cours */
+/* =========================================
+   6. PAGES SPÉCIFIQUES (Cours, À propos, Contact)
+   ========================================= */
+/* Page des cours */
 .hero-cours {
-    background: linear-gradient(rgba(26, 54, 93, 0.85), rgba(26, 54, 93, 0.85)), #1a365d;
+    background: linear-gradient(rgba(26, 54, 93, 0.85), rgba(26, 54, 93, 0.85)), var(--primary-color);
     color: white;
     text-align: center;
     padding: 3rem 2rem;
@@ -127,14 +196,14 @@ footer {
 }
 
 .course-section h2 {
-    color: #1a365d;
-    border-bottom: 2px solid #ffcc00;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--accent-color);
     padding-bottom: 0.5rem;
     margin-bottom: 1.5rem;
 }
 
 .course-card {
-    background: white;
+    background: var(--card-bg);
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -144,39 +213,23 @@ footer {
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
-    border-left: 5px solid #ffcc00;
+    border-left: 5px solid var(--accent-color);
 }
 
 .course-card h3 {
     margin: 0;
-    color: #1a365d;
+    color: var(--primary-color);
     font-size: 1.2rem;
 }
 
 .course-card p {
     margin: 0;
-    color: #555;
+    color: var(--text-muted);
     flex: 1;
     min-width: 250px;
 }
 
-.btn-small {
-    background-color: #1a365d;
-    color: white;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    transition: background 0.3s;
-}
-
-.btn-small:hover {
-    background-color: #ffcc00;
-    color: #1a365d;
-}
-
-/* Style spécifique pour la page À propos */
+/* Page À propos */
 .about-container {
     max-width: 900px;
     margin: 3rem auto;
@@ -184,43 +237,37 @@ footer {
 }
 
 .about-card {
-    background: white;
+    background: var(--card-bg);
     padding: 2.5rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     margin-bottom: 2rem;
-    border-top: 5px solid #1a365d;
+    border-top: 5px solid var(--primary-color);
 }
 
 .about-card h2 {
-    color: #1a365d;
+    color: var(--primary-color);
     margin-top: 0;
     margin-bottom: 1rem;
     font-size: 1.5rem;
 }
 
-.about-card p {
+.about-card p, .about-card ul {
     line-height: 1.7;
-    color: #444;
+    color: var(--text-muted);
     margin-bottom: 1rem;
 }
 
 .about-card ul {
-    margin: 0;
     padding-left: 1.5rem;
-    color: #444;
-    line-height: 1.7;
+    margin: 0;
 }
 
 .about-card li {
     margin-bottom: 0.75rem;
 }
 
-.text-center {
-    text-align: center;
-}
-
-/* Style spécifique pour la page Contact */
+/* Page Contact */
 .contact-container {
     max-width: 1100px;
     margin: 3rem auto;
@@ -240,15 +287,15 @@ footer {
 }
 
 .contact-info, .contact-form-card {
-    background: white;
+    background: var(--card-bg);
     padding: 2.5rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    border-top: 5px solid #1a365d;
+    border-top: 5px solid var(--primary-color);
 }
 
 .contact-info h2, .contact-form-card h2 {
-    color: #1a365d;
+    color: var(--primary-color);
     margin-top: 0;
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
@@ -259,14 +306,14 @@ footer {
 }
 
 .info-item strong {
-    color: #1a365d;
+    color: var(--primary-color);
     display: block;
     margin-bottom: 0.25rem;
 }
 
 .info-item p {
     margin: 0;
-    color: #555;
+    color: var(--text-muted);
 }
 
 .form-group {
@@ -276,28 +323,32 @@ footer {
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: #333;
+    color: var(--text-color);
     font-weight: 500;
 }
 
 .form-group input, .form-group select, .form-group textarea {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     font-family: inherit;
     font-size: 1rem;
     box-sizing: border-box;
+    background-color: var(--card-bg);
+    color: var(--text-color);
 }
 
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
     outline: none;
-    border-color: #1a365d;
+    border-color: var(--primary-color);
 }
 
-/* Style spécifique pour la page de connexion */
+/* =========================================
+   7. PAGE DE CONNEXION (AUTH) & PORTAIL
+   ========================================= */
 .auth-body {
-    background-color: var(--bg-color);
+    background-color: var(--primary-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -321,7 +372,7 @@ footer {
 }
 
 .auth-header h2 {
-    color: var(--text-color);
+    color: var(--primary-color);
     margin-bottom: 0.5rem;
     font-size: 1.5rem;
 }
@@ -345,4 +396,16 @@ footer {
 
 .auth-footer a:hover {
     text-decoration: underline;
+}
+
+/* =========================================
+   8. PIED DE PAGE (FOOTER)
+   ========================================= */
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 3rem;
+    font-size: 0.9rem;
 }

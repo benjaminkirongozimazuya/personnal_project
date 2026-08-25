@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours de Mathématiques - Chapitre 1 : Analyse</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- En-tête -->
+    <header class="header">
+        <div class="logo-container">
+            <span class="logo-text">BKM — Espace Pédagogique</span>
+        </div>
+        <nav class="nav">
+            <a href="modules.html" class="nav-link">← Retour aux modules</a>
+            <a href="portail.html" class="nav-link">Mon Portail</a>
+        </nav>
+    </header>
+
+    <!-- Contenu du Cours -->
+    <section class="section">
+        <div class="container" style="max-width: 800px;">
+            
+            <div style="margin-bottom: 2rem;">
+                <span style="color: var(--primary-color); font-weight: 600; text-transform: uppercase; font-size: 0.85rem;">Mathématiques — 5ème & 6ème Secondaire</span>
+                <h1 style="font-size: 2.2rem; margin-top: 0.5rem;">Chapitre 1 : Introduction aux Dérivées</h1>
+                <p style="color: var(--text-muted);">Publié par l'équipe pédagogique BKM (Lualaba, RDC)</p>
+            </div>
+
+            <!-- Carte de contenu de la leçon -->
+            <div class="card" style="margin-bottom: 2rem;">
+                <h3 style="color: var(--primary-color); margin-bottom: 1rem;">1. Définition et Notion de Base</h3>
+                <p style="margin-bottom: 1rem;">La dérivée d'une fonction en un point mesure la vitesse à laquelle la valeur de cette fonction change par rapport à un changement de son argument. Géometriquement, elle correspond à la pente de la tangente à la courbe représentative de la fonction en ce point.</p>
+                <p>Soit $f(x)$ une fonction définie sur un intervalle ouvert. Le taux de variation s'exprime par la limite de la pente de la sécante lorsque les deux points se rapprochent.</p>
+            </div>
+
+            <div class="card" style="margin-bottom: 2rem;">
+                <h3 style="color: var(--primary-color); margin-bottom: 1rem;">2. Formules Fondamentales à retenir</h3>
+                <ul style="padding-left: 1.5rem; color: var(--text-muted); line-height: 1.8;">
+                    <li>Si $f(x) = c$ (constante), alors sa dérivée est $f'(x) = 0$.</li>
+                    <li>Si $f(x) = x^n$, alors sa dérivée est $f'(x) = n \cdot x^{n-1}$.</li>
+                    <li>La dérivée de la somme est la somme des dérivées : $(f + g)' = f' + g'$.</li>
+                </ul>
+            </div>
+
+            <div class="card" style="margin-bottom: 2rem; border-left: 4px solid var(--accent-color);">
+                <h3 style="color: var(--accent-color); margin-bottom: 1rem;">💡 Exemple Pratique</h3>
+                <p style="margin-bottom: 1rem;">Calculons la dérivée de la fonction : $f(x) = 3x^2 + 5x - 2$.</p>
+                <ol style="padding-left: 1.5rem; color: var(--text-muted); line-height: 1.8;">
+                    <li>La dérivée de $3x^2$ donne $3 \cdot (2x) = 6x$.</li>
+                    <li>La dérivée de $5x$ donne $5$.</li>
+                    <li>La dérivée de la constante $-2$ donne $0$.</li>
+                </ol>
+                <p style="margin-top: 1rem; font-weight: 600; color: var(--text-color);">Résultat final : $f'(x) = 6x + 5$.</p>
+            </div>
+
+            <!-- Navigation bas de page -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 3rem;">
+                <a href="modules.html" class="btn secondary">← Retour aux chapitres</a>
+                <a href="quiz.html" class="btn primary">Tester mes connaissances sur ce cours →</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Pied de page -->
+    <footer>
+        <p>&copy; 2026 BKM - République Démocratique du Congo. Siège : Lualaba. Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>
