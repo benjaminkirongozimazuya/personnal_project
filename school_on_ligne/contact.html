@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - BKM École en Ligne</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- En-tête / Barre de navigation -->
+    <header>
+        <div class="logo">BKM</div>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="cours.html">Cours</a>
+            <a href="apropos.html">À propos</a>
+            <a href="contact.html" class="active">Contact</a>
+        </nav>
+    </header>
+
+    <!-- En-tête de la page Contact -->
+    <section class="hero-cours">
+        <h1>Contactez l'École BKM</h1>
+        <p>Une question sur nos programmes en ligne, les filières ou l'accès aux cours ? Écrivez-nous dès aujourd'hui.</p>
+    </section>
+
+    <!-- Contenu principal / Formulaire et Coordonnées -->
+    <section class="contact-container">
+        
+        <div class="contact-grid">
+            
+            <!-- Informations de contact -->
+            <div class="contact-info">
+                <h2>Nos Coordonnées</h2>
+                <p>Restez en contact avec notre équipe pour toute information relative aux cours de 5ème, 6ème secondaire et à l'espace autodidacte.</p>
+                
+                <div class="info-item">
+                    <strong>📍 Siège social :</strong>
+                    <p>Province du Lualaba, République Démocratique du Congo</p>
+                </div>
+
+                <div class="info-item">
+                    <strong>👤 Fondateur :</strong>
+                    <p>Benjamin Kirongozi Mazuya</p>
+                </div>
+
+                <div class="info-item">
+                    <strong>✉️ E-mail :</strong>
+                    <p>kirongozinotes1@gmail.com</p>
+                </div>
+
+                <div class="info-item">
+                    <strong>📞 Téléphone / WhatsApp :</strong>
+                    <p>+243 97 32 92 227</p>
+                </div>
+            </div>
+
+            <!-- Formulaire de contact -->
+            <div class="contact-form-card">
+                <h2>Envoyez-nous un message</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="nom">Nom complet</label>
+                        <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Adresse e-mail</label>
+                        <input type="email" id="email" name="email" placeholder="votre.email@exemple.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="filiere">Option / Filière concernée</label>
+                        <select id="filiere" name="filiere">
+                            <option value="general">Humanités Générales (Scientifique, Latin...)</option>
+                            <option value="technique">Humanités Techniques (Commerciale, Électricité...)</option>
+                            <option value="pedagogique">Humanités Pédagogiques</option>
+                            <option value="artistique">Humanités Artistiques</option>
+                            <option value="autodidacte">Espace Autodidacte / ExETat</option>
+                            <option value="autre">Autre demande</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Votre message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Comment pouvons-nous vous aider ?" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%; border: none; cursor: pointer;">Envoyer le message</button>
+                </form>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Pied de page -->
+    <footer>
+        <p>&copy; 2026 BKM - République Démocratique du Congo. Siège : Lualaba. Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>

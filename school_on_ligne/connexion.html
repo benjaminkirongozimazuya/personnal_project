@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion Portail Élève - BKM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-body">
+
+    <!-- Carte de Connexion -->
+    <div class="auth-container">
+        <div class="auth-header">
+            <h2>Portail Élève BKM</h2>
+            <p>Entrez votre e-mail officiel et votre mot de passe pour accéder à vos cours.</p>
+        </div>
+
+        <form id="login-form">
+            <div class="form-group">
+                <label for="student-email">E-mail officiel de l'école</label>
+                <input type="email" id="student-email" placeholder="ex: nom.prenom@bkm-ecole.cd" required>
+            </div>
+
+            <div class="form-group">
+                <label for="student-password">Mot de passe</label>
+                <input type="password" id="student-password" placeholder="Votre mot de passe" required>
+            </div>
+
+            <button type="submit" class="btn primary full-width">Se connecter au portail</button>
+        </form>
+
+        <div class="auth-footer">
+            <p>Vous avez réussi votre test d'admission mais n'avez pas encore d'e-mail ? <a href="contact.html">Contactez l'administration</a></p>
+            <p style="margin-top: 1rem;"><a href="index.html">← Retour au site principal</a></p>
+        </div>
+    </div>
+
+    <!-- Script de simulation de connexion -->
+    <script>
+        const loginForm = document.getElementById('login-form');
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('student-email').value;
+            
+            // Simulation : on enregistre l'e-mail et on redirige vers le tableau de bord
+            localStorage.setItem('bkm_student', email);
+            alert("Connexion réussie ! Bienvenue dans votre portail.");
+            window.location.href = 'portail.html';
+        });
+    </script>
+</body>
+</html>
