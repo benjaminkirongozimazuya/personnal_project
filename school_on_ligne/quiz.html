@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz d'Évaluation Complet — Commerciale et Gestion - BKM</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .quiz-container {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-top: 1.5rem;
+        }
+        .option-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 1rem;
+            margin: 0.75rem 0;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            background: #f8fafc;
+            color: var(--text-color);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .option-btn:hover:not(:disabled) {
+            border-color: var(--primary-color);
+            background: #f1f5f9;
+        }
+        .option-btn.correct {
+            background: #d1fae5 !important;
+            border-color: #10b981 !important;
+            color: #065f46;
+        }
+        .option-btn.incorrect {
+            background: #fee2e2 !important;
+            border-color: #ef4444 !important;
+            color: #991b1b;
+        }
+        .score-box {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- En-tête -->
+    <header class="header">
+        <div class="logo-container">
+            <span class="logo-text">BKM — Évaluation Interactive</span>
+        </div>
+        <nav class="nav">
+            <a href="cours-commerciale.html" class="nav-link">← Retour à l'Option Commerciale</a>
+            <a href="portail.html" class="nav-link">Mon Portail</a>
+        </nav>
+    </header>
+
+    <!-- Contenu du Quiz -->
+    <section class="section">
+        <div class="container" style="max-width: 850px;">
+            
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <span style="color: var(--primary-color); font-weight: 600; text-transform: uppercase; font-size: 0.85rem;">Testez vos compétences par module</span>
+                <h1 style="font-size: 2.3rem; margin-top: 0.5rem; color: var(--primary-color);">Banque de Quiz d'Évaluation</h1>
+                <p style="color: var(--text-muted); max-width: 700px; margin: 0.5rem auto 0 auto;">Choisissez le module de cours que vous souhaitez évaluer ci-dessous.</p>
+            </div>
+
+            <!-- Grille de sélection des catégories -->
+            <div class="category-grid" id="category-selector">
+                <button onclick="startQuiz('compta')" class="btn primary">📊 Comptabilité Générale</button>
+                <button onclick="startQuiz('fiscalite')" class="btn primary">📑 Fiscalité</button>
+                <button onclick="startQuiz('droit')" class="btn primary">⚖️ Droit (Commercial & Travail)</button>
+                <button onclick="startQuiz('correspondance')" class="btn primary">📝 Correspondance Pro</button>
+                <button onclick="startQuiz('maths')" class="btn primary">🔢 Maths Financières</button>
+                <button onclick="startQuiz('info')" class="btn primary">💻 Informatique de Gestion</button>
+                <button onclick="startQuiz('organisation')" class="btn primary">🏢 Organisation des Entreprises</button>
+                <button onclick="startQuiz('deontologie')" class="btn primary">🤝 Déontologie Professionnelle</button>
+                <button onclick="startQuiz('finances')" class="btn primary">🏛️ Finances Publiques</button>
+            </div>
+
+            <!-- Boîte principale du Quiz -->
+            <div class="quiz-container" id="quiz-card" style="display: none;">
+                <div class="score-box" id="score-display">Score : 0 / 0</div>
+                <div id="question-progress" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.5rem;"></div>
+                <h3 id="question-text" style="color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.3rem;"></h3>
+                <div id="options-container"></div>
+                <button id="next-btn" class="btn primary" style="margin-top: 2rem; display: none; width: 100%; text-align: center;" onclick="nextQuestion()">Question Suivante →</button>
+            </div>
+
+            <!-- Écran de Fin -->
+            <div class="quiz-container" id="result-card" style="display: none; text-align: center;">
+                <h2 id="result-title" style="margin-bottom: 1rem;"></h2>
+                <p id="final-score-text" style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--text-muted);"></p>
+                <button onclick="backToCategories()" class="btn primary">Choisir un autre module</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Script contenant toutes les questions par module -->
+    <script>
+        const quizData = {
+            compta: [
+                {
+                    question: "Quel compte enregistre généralement les liquidités disponibles en banque de l'entreprise ?",
+                    options: ["Compte Caisse", "Compte Banque", "Compte Client", "Compte Fournisseur"],
+                    correct: 1
+                },
+                {
+                    question: "Que représente le Passif dans le bilan comptable d'une entreprise ?",
+                    options: ["Les ressources et origines des fonds", "Les biens matériels possédés", "Uniquement les créances clients", "Le bénéfice net brut"],
+                    correct: 0
+                },
+                {
+                    question: "L'inventaire comptable périodique permet de vérifier :",
+                    options: ["La concordance entre la comptabilité et la réalité physique", "Le moral du personnel administratif", "Le taux d'inflation national", "La météo financière de l'exercice"],
+                    correct: 0
+                },
+                {
+                    question: "En comptabilité générale, qu'est-ce qu'un 'débit' ?",
+                    options: ["Une diminution d'actif", "Une inscription portée à la gauche d'un compte", "Une ressource externe", "Une dette obligataire"],
+                    correct: 1
+                }
+            ],
+            fiscalite: [
+                {
+                    question: "En RDC, quel impôt frappe directement la valeur ajoutée des transactions ?",
+                    options: ["L'Impôt Professionnel sur les Rémunérations (IPR)", "La Taxe sur la Valeur Ajoutée (TVA)", "L'impôt foncier annuel", "La redevance minière"],
+                    correct: 1
+                },
+                {
+                    question: "À quoi sert l'IPR (Impôt Professionnel sur les Rénunérations) ?",
+                    options: ["À taxer les bénéfices des sociétés anonymes", "À prélever un impôt sur les salaires du personnel", "À taxer l'importation des marchandises", "À financer les routes nationales"],
+                    correct: 1
+                },
+                {
+                    question: "Qu'appelle-t-on un contribuable assujetti ?",
+                    options: ["Une personne exemptée d'impôts", "Une personne physique ou morale légalement tenue de payer l'impôt", "Un agent de l'administration fiscale", "Un inspecteur des finances publiques"],
+                    correct: 1
+                }
+            ],
+            droit: [
+                {
+                    question: "Quel texte juridique régit principalement les contrats de travail en RDC ?",
+                    options: ["Le Code Civil congolais", "Le Code du Travail", "Le Code Pénal militaire", "La loi foncière"],
+                    correct: 1
+                },
+                {
+                    question: "Dans le cadre de l'OHADA, que signifie l'acronyme RCCM ?",
+                    options: ["Registre du Commerce et du Crédit Mobilier", "Règlement Commercial et Comptable Moderne", "Reconnaissance des Comptes et Capital Minier", "Réseau des Chambres de Commerce Mondiales"],
+                    correct: 0
+                },
+                {
+                    question: "Qu'est-ce qu'une Société à Responsabilité Limitée (SARL) ?",
+                    options: ["Une société où les associés répondent indéfiniment des dettes", "Une société où la responsabilité des associés est limitée à leurs apports", "Une entreprise publique non commerciale", "Une association sans but lucratif"],
+                    correct: 1
+                }
+            ],
+            correspondance: [
+                {
+                    question: "Quel est l'élément indispensable pour débuter une lettre administrative officielle en français ?",
+                    options: ["Une formule familière (Salut)", "Un timbre et un en-tête précis avec référence", "Une blague professionnelle", "Un dessin explicatif"],
+                    correct: 1
+                },
+                {
+                    question: "Dans un CV professionnel en anglais (Business English), que signifie 'Cover Letter' ?",
+                    options: ["La photo d'identité", "La lettre de motivation", "Le diplôme d'études secondaires", "Le certificat de bonne vie et moeurs"],
+                    correct: 1
+                },
+                {
+                    question: "Qu'est-ce qu'une note de service ?",
+                    options: ["Une lettre envoyée à un fournisseur étranger", "Un document interne de communication descendante ou transversale dans l'entreprise", "Une facture d'achat de matériel", "Un contrat de vente de marchandises"],
+                    correct: 1
+                }
+            ],
+            maths: [
+                {
+                    question: "Comment calcule-t-on un intérêt simple (I) ?",
+                    options: ["I = C x t x n / 100", "I = C + t + n", "I = C / (1 + t)^n", "I = (C - t) x n"],
+                    correct: 0
+                },
+                {
+                    question: "Que signifie 'capitaliser' en mathématiques financières ?",
+                    options: ["Retirer de l'argent d'un compte", "Faire porter des intérêts à un capital placé pour qu'il augmente avec le temps", "Calculer une taxe gouvernementale", "Diviser une dette en parts égales"],
+                    correct: 1
+                },
+                {
+                    question: "Qu'est-ce qu'une annuité d'emprunt ?",
+                    options: ["Un versement unique effectué après 10 ans", "Une suite de versements effectués à des intervalles réguliers pour rembourser une dette", "Un impôt annuel payé à la commune", "Un salaire versé par mois"],
+                    correct: 1
+                }
+            ],
+            info: [
+                {
+                    question: "Dans Microsoft Excel, à quoi sert une fonction financière comme 'VPM' (ou PMT) ?",
+                    options: ["À tracer un graphique en secteurs", "À calculer des remboursements d'emprunt ou des annuités", "À corriger les fautes d'orthographe", "À envoyer un e-mail automatique"],
+                    correct: 1
+                },
+                {
+                    question: "Qu'est-ce qu'un tableur ?",
+                    options: ["Un meuble de bureau pour ranger les dossiers", "Un logiciel permettant de manipuler des tableaux de chiffres et d'automatiser des calculs", "Un outil de visioconférence", "Un système d'exploitation"],
+                    correct: 1
+                },
+                {
+                    question: "Pourquoi la sauvegarde régulière des données d'une entreprise est-elle cruciale ?",
+                    options: ["Pour encombrer le disque dur", "Pour éviter toute perte irrémédiable d'informations en cas de panne ou d'incident", "Pour ralentir l'ordinateur", "Pour compliquer la comptabilité"],
+                    correct: 1
+                }
+            ],
+            organisation: [
+                {
+                    question: "Qu'est-ce qu'un organigramme dans une entreprise ?",
+                    options: ["Un schéma représentant la structure hiérarchique et les liens fonctionnels", "Une liste des prix des produits vendus", "Un plan géographique des bureaux", "Un inventaire des machines"],
+                    correct: 0
+                },
+                {
+                    question: "Quel est l'intérêt d'une bonne gestion du courrier et de l'archivage ?",
+                    options: ["Perdre le moins de temps possible à retrouver les dossiers et sécuriser l'information", "Occuper de l'espace inutilement", "Augmenter les factures de papier", "Fatiguer le secrétariat"],
+                    correct: 0
+                },
+                {
+                    question: "Le management opérationnel se concentre sur :",
+                    options: ["La gestion quotidienne et à court terme des activités et du personnel", "La politique internationale de l'État", "La création de nouvelles planètes", "Le code pénal"],
+                    correct: 0
+                }
+            ],
+            deontologie: [
+                {
+                    question: "Que recouvre la notion de 'secret professionnel' en gestion d'entreprise ?",
+                    options: ["L'obligation de ne jamais divulguer les informations stratégiques ou financières confidentielles", "Le droit de mentir aux clients", "Le fait de travailler en cachette la nuit", "L'interdiction de parler aux collègues"],
+                    correct: 0
+                },
+                {
+                    question: "Qu'est-ce que la RSE (Responsabilité Sociétale des Entreprises) ?",
+                    options: ["L'obligation de payer des amendes", "La contribution volontaire de l'entreprise aux enjeux éthiques, sociaux et environnementaux", "Un syndicat d'employés", "Un logiciel de gestion de stock"],
+                    correct: 1
+                }
+            ],
+            finances: [
+                {
+                    question: "Qu'est-ce que le budget de l'État ?",
+                    options: ["Un compte personnel du président", "L'acte prévisionnel et autorisatif des recettes et des dépenses publiques de la nation", "Une entreprise commerciale privée", "Le montant des dettes extérieures uniquement"],
+                    correct: 1
+                },
+                {
+                    question: "Qui vote officiellement le budget de l'État ?",
+                    options: ["Le Parlement (l'Assemblée Nationale et le Sénat)", "Les banques privées", "Les directeurs des écoles", "La police nationale"],
+                    correct: 0
+                }
+            ]
+        };
+
+        let currentCategory = '';
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let activeQuestions = [];
+
+        function startQuiz(category) {
+            currentCategory = category;
+            activeQuestions = quizData[category];
+            currentQuestionIndex = 0;
+            score = 0;
+
+            document.getElementById('category-selector').style.display = 'none';
+            document.getElementById('quiz-card').style.display = 'block';
+            document.getElementById('result-card').style.display = 'none';
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const q = activeQuestions[currentQuestionIndex];
+            document.getElementById('question-progress').innerText = `Question ${currentQuestionIndex + 1} sur ${activeQuestions.length}`;
+            document.getElementById('question-text').innerText = q.question;
+            document.getElementById('score-display').innerText = `Score : ${score} / ${activeQuestions.length}`;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            document.getElementById('next-btn').style.display = 'none';
+
+            q.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = option;
+                btn.onclick = () => selectOption(index, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function selectOption(selectedIndex, selectedBtn) {
+            const q = activeQuestions[currentQuestionIndex];
+            const buttons = document.querySelectorAll('.option-btn');
+
+            buttons.forEach(b => b.disabled = true);
+
+            if (selectedIndex === q.correct) {
+                selectedBtn.classList.add('correct');
+                score++;
+            } else {
+                selectedBtn.classList.add('incorrect');
+                buttons[q.correct].classList.add('correct');
+            }
+
+            document.getElementById('score-display').innerText = `Score : ${score} / ${activeQuestions.length}`;
+            document.getElementById('next-btn').style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < activeQuestions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-card').style.display = 'none';
+            document.getElementById('result-card').style.display = 'block';
+
+            const pourcentage = (score / activeQuestions.length) * 100;
+            const titleElement = document.getElementById('result-title');
+            const textElement = document.getElementById('final-score-text');
+
+            textElement.innerText = `Votre score : ${score} sur ${activeQuestions.length} (${Math.round(pourcentage)}%)`;
+
+            // Si le score est de la moyenne ou plus (>= 50%)
+            if (pourcentage >= 50) {
+                titleElement.innerHTML = "Module Validé ! 🎉";
+                titleElement.style.color = "#10b981"; // Vert succès
+                textElement.innerHTML += "<br><br>Félicitations pour votre progression et votre maîtrise du sujet !";
+            } else {
+                // Si l'élève échoue (< 50%)
+                titleElement.innerHTML = "Évaluation non validée 📚";
+                titleElement.style.color = "#ef4444"; // Rouge échec
+                textElement.innerHTML += "<br><br>Dommage ! Révisez un peu plus les notions du cours et réessayez pour progresser.";
+            }
+        }
+
+        function backToCategories() {
+            document.getElementById('result-card').style.display = 'none';
+            document.getElementById('category-selector').style.display = 'grid';
+        }
+    </script>
+
+    <!-- Pied de page -->
+    <footer>
+        <p>&copy; 2026 BKM - République Démocratique du Congo. Siège : Lualaba. Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>
