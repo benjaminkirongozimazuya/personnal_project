@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz d'Évaluation - Comptabilité Générale - BKM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- En-tête -->
+    <header class="header">
+        <div class="logo-container">
+            <span class="logo-text">BKM — Évaluation Comptabilité</span>
+        </div>
+        <nav class="nav">
+            <a href="cours-comptabilite.html" class="nav-link">← Retour au cours</a>
+            <a href="portail.html" class="nav-link">Mon Portail</a>
+        </nav>
+    </header>
+
+    <!-- Contenu du Quiz -->
+    <section class="section">
+        <div class="container" style="max-width: 800px;">
+            
+            <div style="margin-bottom: 2rem; text-align: center;">
+                <span style="color: var(--primary-color); font-weight: 600; text-transform: uppercase; font-size: 0.85rem;">Option Commerciale et Gestion — Niveaux III & IV</span>
+                <h1 style="font-size: 2.2rem; margin-top: 0.5rem; color: var(--primary-color);">Quiz : Comptabilité Générale</h1>
+                <p style="color: var(--text-muted); margin-top: 0.5rem;">Testez vos connaissances sur les écritures comptables, les amortissements et le bilan.</p>
+            </div>
+
+            <!-- Formulaire du Quiz -->
+            <form id="quiz-form">
+                
+                <!-- Question 1 -->
+                <div class="card" style="margin-bottom: 1.5rem; border-top: 4px solid var(--primary-color);">
+                    <h3 style="color: var(--primary-color); font-size: 1.1rem; margin-bottom: 1rem;">Question 1 : Que représente le Bilan d'une entreprise à la clôture de l'exercice ?</h3>
+                    <label style="display: block; margin-bottom: 0.75rem; cursor: pointer;">
+                        <input type="radio" name="q1" value="a" style="margin-right: 0.5rem;"> A) La photothèque des résultats de l'année précédente
+                    </label>
+                    <label style="display: block; margin-bottom: 0.75rem; cursor: pointer;">
+                        <input type="radio" name="q1" value="b" style="margin-right: 0.5rem;"> B) Une photographie du patrimoine de l'entreprise à un moment précis (Actif / Passif)
+                    </label>
+                    <label style="display: block; cursor: pointer;">
+                        <input type="radio" name="q1" value="c" style="margin-right: 0.5rem;"> C) Le total des liquidités en caisse uniquement
+                    </label>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="card" style="margin-bottom: 1.5rem; border-top: 4px solid var(--primary-color);">
+                    <h3 style="color: var(--primary-color); font-size: 1.1rem; margin-bottom: 1rem;">Question 2 : Qu'est-ce qu'un amortissement en fin d'exercice ?</h3>
+                    <label style="display: block; margin-bottom: 0.75rem; cursor: pointer;">
+                        <input type="radio" name="q2" value="a" style="margin-right: 0.5rem;"> A) Une recette supplémentaire perçue par la banque
+                    </label>
+                    <label style="display: block; margin-bottom: 0.75rem; cursor: pointer;">
+                        <input type="radio" name="q2" value="b" style="margin-right: 0.5rem;"> B) La constatation comptable de la dépréciation d'une immobilisation
+                    </label>
+                    <label style="display: block; cursor: pointer;">
+                        <input type="radio" name="q2" value="c" style="margin-right: 0.5rem;"> C) Le paiement des salaires du personnel
+                    </label>
+                </div>
+
+                <!-- Bouton de Soumission -->
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="btn primary" style="font-size: 1rem; padding: 1rem 2.5rem;">Soumettre mes réponses</button>
+                </div>
+
+            </form>
+
+            <!-- Zone de Résultat (Cachée par défaut) -->
+            <div id="resultat-box" class="card hidden" style="margin-top: 2rem; text-align: center; border-top: 5px solid var(--accent-color);">
+                <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">Résultat de votre évaluation</h3>
+                <p id="score-text" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem;"></p>
+                <a href="cours-comptabilite.html" class="btn secondary">Retourner au cours</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Pied de page -->
+    <footer>
+        <p>&copy; 2026 BKM - République Démocratique du Congo. Siège : Lualaba. Tous droits réservés.</p>
+    </footer>
+
+    <!-- Script de correction automatique du Quiz -->
+    <script>
+        const quizForm = document.getElementById('quiz-form');
+        quizForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            let score = 0;
+            const totalQuestions = 2;
+
+            // Correction de la question 1 (La bonne réponse est 'b')
+            const q1Reponse = document.querySelector('input[name="q1"]:checked');
+            if (q1Reponse && q1Reponse.value === 'b') {
+                score++;
+            }
+
+            // Correction de la question 2 (La bonne réponse est 'b')
+            const q2Reponse = document.querySelector('input[name="q2"]:checked');
+            if (q2Reponse && q2Reponse.value === 'b') {
+                score++;
+            }
+
+            // Affichage du résultat
+            quizForm.style.display = 'none';
+            const resultatBox = document.getElementById('resultat-box');
+            const scoreText = document.getElementById('score-text');
+
+            scoreText.innerText = `Vous avez obtenu ${score} / ${totalQuestions} de bonnes réponses !`;
+            resultatBox.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
