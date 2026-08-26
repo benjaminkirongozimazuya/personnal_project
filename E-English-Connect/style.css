@@ -5,6 +5,7 @@
     --bg-light: #f8fafc;
     --text-color: #334155;
     --white: #ffffff;
+    --border-color: #cbd5e1;
 }
 
 * {
@@ -18,6 +19,9 @@ body {
     background-color: var(--bg-light);
     color: var(--text-color);
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* En-tête / Navbar */
@@ -94,6 +98,7 @@ header {
     color: #f1f5f9;
 }
 
+/* Boutons globaux */
 .btn {
     display: inline-block;
     background-color: var(--accent-gold);
@@ -103,7 +108,9 @@ header {
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 4px 15px rgba(180, 83, 9, 0.4);
+    box-shadow: 0 4px 15px rgba(180, 83, 9, 0.3);
+    border: none;
+    cursor: pointer;
 }
 
 .btn:hover {
@@ -111,11 +118,12 @@ header {
     transform: translateY(-2px);
 }
 
-/* Section des fonctionnalités / Cours */
+/* Conteneur principal des pages */
 .container {
     max-width: 1200px;
     margin: 50px auto;
     padding: 0 20px;
+    flex: 1; /* Pousse le footer vers le bas si la page est courte */
 }
 
 .section-title {
@@ -125,6 +133,7 @@ header {
     color: var(--primary-color);
 }
 
+/* Grille des cartes */
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -136,12 +145,13 @@ header {
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    transition: transform 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
     border-top: 4px solid var(--accent-gold);
 }
 
 .card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
 .card i {
@@ -168,10 +178,55 @@ header {
     display: inline-flex;
     align-items: center;
     gap: 5px;
+    transition: gap 0.2s;
 }
 
 .card-link:hover {
+    gap: 10px;
     text-decoration: underline;
+}
+
+/* Styles pour les formulaires (ex: Contact) */
+.contact-form-container {
+    max-width: 600px;
+    background: var(--white);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin: 0 auto;
+    border-top: 4px solid var(--accent-gold);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    border-color: var(--accent-gold);
+}
+
+.form-group textarea {
+    resize: vertical;
+    height: 150px;
 }
 
 /* Pied de page */
@@ -186,4 +241,15 @@ footer {
 footer p {
     color: #94a3b8;
     font-size: 0.95rem;
+}
+
+/* Responsive design pour mobiles */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .hero h1 {
+        font-size: 2.2rem;
+    }
 }
