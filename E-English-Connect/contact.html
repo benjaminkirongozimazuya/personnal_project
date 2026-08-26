@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — Centre d'Anglais</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styles spécifiques pour le formulaire de contact */
+        .contact-form-container {
+            max-width: 600px;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 0 auto;
+            border-top: 4px solid var(--accent-gold);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        .form-group textarea {
+            resize: vertical;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-graduation-cap"></i> English Center
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="niveaux.html">Niveaux</a></li>
+                <li><a href="ressources.html">Ressources</a></li>
+                <li><a href="contact.html" style="color: #fde68a;">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Rejoignez-nous ou Posez vos Questions</h2>
+        
+        <div class="contact-form-container">
+            <form onsubmit="event.preventDefault(); alert('Merci ! Votre message a bien été simulé.');">
+                <div class="form-group">
+                    <label for="nom"><i class="fa-solid fa-user"></i> Nom complet</label>
+                    <input type="text" id="nom" placeholder="Votre nom" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email"><i class="fa-solid fa-envelope"></i> Adresse e-mail</label>
+                    <input type="email" id="email" placeholder="votre.email@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message"><i class="fa-solid fa-comment-dots"></i> Message</label>
+                    <textarea id="message" placeholder="Écrivez votre message ou votre demande d'inscription ici..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%; text-align: center; border: none; cursor: pointer;">Envoyer le message</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Centre d'Anglais. Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>
